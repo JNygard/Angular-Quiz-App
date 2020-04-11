@@ -1,6 +1,10 @@
  body {
     overflow-x: hidden;
 }
+
+#category-dropdown{
+  margin: 10px;
+}
   
   #sidebar-wrapper {
     min-height: 100vh;
@@ -14,6 +18,11 @@
   #sidebar-wrapper .sidebar-heading {
     padding: 0.875rem 1.25rem;
     font-size: 1.2rem;
+  }
+
+  .active{
+    font-weight: bold;
+    color: rgb(204, 167, 0);
   }
   
   #sidebar-wrapper .list-group {
@@ -44,8 +53,8 @@
   }
 
   .progress{
+      margin-top:-10px;
       margin-left: 10px;
       margin-right: 10px;
-
   }
   

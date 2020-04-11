@@ -1,0 +1,15 @@
+
+
+.container{
+    height: 85vh;
+    width: 100%;
+    text-align: center;
+}
+
+#quiz-item{
+    margin-top: 20px;
+}
+
+#quiz-item:hover{
+    cursor: pointer;
+}

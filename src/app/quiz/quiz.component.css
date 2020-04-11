@@ -1,0 +1,29 @@
+
+
+#option{
+    margin-top: 10px;
+}
+
+#question-box{
+    margin: 10px;
+    height: 200px;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+}
+
+#container{
+    border-width: 20px;
+    border-color: black;
+    height: 85vh;
+}
+
+#question-section{
+    height: 50%;
+}
+
+#option-section{
+    height: 50%; 
+    justify-content: center;
+}

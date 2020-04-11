@@ -1,0 +1,46 @@
+<div *ngIf="selectedCategory" class="container">
+
+  <h2>{{selectedCategory.title}}</h2>
+
+  <!--Progress bar-->
+  <div class="list-group list-group-flush">
+    <br />
+    <div class="progress">
+      <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+        aria-valuemax="100"></div>
+    </div>
+  </div>
+
+  <br />
+
+  <div id="quizz-list">
+    <div class="row" style="width: 100%;">
+
+      <!-- Quiz items -->
+      <div *ngFor='let q of quizzes' class="col-lg-6">
+        <div [routerLink]="['/quiz', q.id ]" href="#" id="quiz-item"
+          class="list-group-item list-group-item-action bg-light">
+
+          <h4>{{q.name}} </h4>
+
+          
+          <p *ngIf="q.completed">
+            <fa-icon [icon]="faCheckSquare" style="color: green;"> </fa-icon>
+            Completed!
+          </p>
+
+          <p *ngIf="!q.completed">
+            <fa-icon [icon]="faSquare" style="color: orange;"></fa-icon>
+            Not completed
+          </p>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+</div>

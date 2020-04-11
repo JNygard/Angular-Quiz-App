@@ -1,24 +1,14 @@
 
-    <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading">Quiz App </div>
 
-      <div class="list-group list-group-flush">
+<div *ngIf="categories" class="bg-light border-right" id="sidebar-wrapper">
 
-        <div class="progress">
-            <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-        </div>
+  <div class="sidebar-heading"> Quiz Categories</div>
 
-      </div>
+  <!-- Categories -->
+  <div *ngFor='let cat of categories' class="list-group list-group-flush">
+    <a [routerLinkActive]="'active'" [routerLink]="['/category', cat.id ]" href="#"
+      class="list-group-item list-group-item-action bg-light"> {{cat.title}}
+    </a>
+  </div>
 
-      <div class="sidebar-heading">Categories</div>
-
-
-      <div class="list-group list-group-flush">
-        <a href="#" class="list-group-item list-group-item-action bg-light">Quiz 1 (100%)</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Quiz 2 (100%)</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Quiz 3 (50%)</a>
-
-      </div>
-
-
-    </div>
+</div>

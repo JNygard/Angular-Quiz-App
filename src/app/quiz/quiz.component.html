@@ -1,8 +1,29 @@
 
 
-<div>
+<div *ngIf="question" id="container" class="container">
 
-<p>Quiz here</p>
+    <!-- Question card -->
+    <div class="row align-items-center" id="question-section">
+        <div class="col">
+            <div id="question-box" class="card">
+                <div class="card-body" id="question-body">
+                    <h5 class="card-title">{{question.question}}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
 
+
+    <!-- Options -->
+    <div class="row align-items-center" id="option-section" >
+        <div class="row" style="width: 100%;">
+
+            <div *ngFor='let o of options' class="col-lg-6"> 
+                <button id="option" type="button" class="btn btn-primary btn-lg btn-block">{{o.title}} </button>
+            </div>
+
+        </div>
+      </div>
+      
 
 </div>

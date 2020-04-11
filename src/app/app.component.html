@@ -1,9 +1,14 @@
 
 
-<div class="d-flex" id="wrapper">
+<div *ngIf="quizzes && categories" class="d-flex" id="wrapper">
 
   <!-- Sidebar -->
-  <app-side-bar></app-side-bar>
+  
+  <app-side-bar
+  [categories]="categories"
+  [quizzes]="quizzes"
+
+  ></app-side-bar>
 
 
   <div id="page-content-wrapper">
@@ -13,8 +18,10 @@
 
 
     <!-- Content -->
-    <div class="container-fluid">
-      <app-quiz></app-quiz>
+    <div class="container">
+      
+      <router-outlet></router-outlet>
+
     </div>
 
   </div>
