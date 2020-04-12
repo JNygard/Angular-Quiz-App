@@ -1,7 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, NavigationEnd } from "@angular/router";
+import { faTree, faMusic } from '@fortawesome/free-solid-svg-icons';
 import { Category } from '../model/category';
 import { Quiz } from '../model/quiz';
+
 
 @Component({
   selector: 'app-side-bar',
@@ -9,19 +11,17 @@ import { Quiz } from '../model/quiz';
   styleUrls: ['./side-bar.component.css']
 })
 export class SideBarComponent implements OnInit {
-
   @Input() categories: Category[];
   @Input() quizzes: Quiz[];
 
   selectedCategory: Category;
-
+  icons = [faTree, faMusic]
 
   constructor(
     private router: Router
   ) { }
 
   ngOnInit(): void {
-
     this.setNavBarContent();
 
     this.router.events.subscribe(val => {
@@ -30,6 +30,9 @@ export class SideBarComponent implements OnInit {
       }
     });
   }
+
+  
+
 
   setNavBarContent() {
     const path = this.router.parseUrl(this.router.url).root.children.primary.segments[0].path

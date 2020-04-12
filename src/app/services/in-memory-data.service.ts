@@ -11,11 +11,11 @@ export class InMemoryDataService implements InMemoryDbService {
     // Questions
     const questions = [
       {
-        id: 1, quizID: 1, catID:1, question: "Question 1?", positon: 1,
+        id: 1, quizID: 1, catID:1, question: "Question 1 Question 1 question 1? ", position: 1,
         o1r: "Option 1", o2w: "Option 1-2", o3w: "Option 1-3", o4w: "Option 1-4",
         extra: "Additional information"
       },{
-        id: 2, quizID: 2, catID:2, question: "Question 2?", positon: 2,
+        id: 2, quizID: 1, catID:1, question: "Question 2?", position: 2,
         o1r: "Option 2-1", o2w: "Option 2-2", o3w: "Option 2-3", o4w: "Option 2-4",
         extra: "Additional information"
       }

@@ -13,3 +13,7 @@
 #quiz-item:hover{
     cursor: pointer;
 }
+
+.card-text{
+    color: "black"
+}

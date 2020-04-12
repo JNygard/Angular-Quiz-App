@@ -5,7 +5,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule }    from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService }  from './in-memory-data.service';
+import { InMemoryDataService }  from './services/in-memory-data.service';
 import { AppRoutingModule } from './app-routing.module';
 
 // Components
@@ -14,6 +14,8 @@ import { SideBarComponent } from './side-bar/side-bar.component';
 import { CategoryComponent } from './category/category.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { FooterComponent } from './footer/footer.component';
+import { ProgressBarComponent } from './progress-bar/progress-bar.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { FooterComponent } from './footer/footer.component';
     QuizComponent,
     NavBarComponent,
     FooterComponent,
-    CategoryComponent
+    CategoryComponent,
+    ProgressBarComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

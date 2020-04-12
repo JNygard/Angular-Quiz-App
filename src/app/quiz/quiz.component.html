@@ -1,29 +1,53 @@
-
-
 <div *ngIf="question" id="container" class="container">
 
     <!-- Question card -->
     <div class="row align-items-center" id="question-section">
-        <div class="col">
-            <div id="question-box" class="card">
-                <div class="card-body" id="question-body">
-                    <h5 class="card-title">{{question.question}}</h5>
+        <div class="card" id="question-box">
+            <div class="card-body" id="question-body">
+
+                <!-- Progress -->
+                <div>
+                    <app-progress-bar progress="{{((question.position-1)/(questions.length-1))*100}}">
+                    </app-progress-bar>
+                </div>
+
+                <!-- Question-->
+                <div id="question-text-container">
+                    <h5 class="card-title" id="question">{{question.question}}</h5>
+
+                    <!-- Feedback -->
+                    <div>
+                        <h2 *ngIf="pause" id="feedback">Correct!</h2>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
 
 
+
     <!-- Options -->
-    <div class="row align-items-center" id="option-section" >
+    <div class="row align-items-center" id="option-section">
         <div class="row" style="width: 100%;">
-
-            <div *ngFor='let o of options' class="col-lg-6"> 
-                <button id="option" type="button" class="btn btn-primary btn-lg btn-block">{{o.title}} </button>
+            <div *ngFor='let o of options; index as i' class="col-lg-6">
+                <button (click)="answer(i)" id="option" type="button"
+                    class="btn btn-primary btn-lg btn-block">{{o.title}} </button>
             </div>
-
         </div>
-      </div>
-      
+    </div>
 
+
+    <!-- Next button -->
+    <div *ngIf="pause" id="next-section">
+        <div id="next-row">
+            <button (click)="goNext()" id="next" type="button" class="btn btn-info btn-block btn-lg">Next
+                <fa-icon [icon]="faArrowRight"></fa-icon></button> </div>
+    </div>
 </div>
+
+
+
+<app-spinner
+*ngIf="!question"
+></app-spinner>

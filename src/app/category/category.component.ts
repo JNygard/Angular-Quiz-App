@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { faSquare, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
+import { faSquare, faCheck } from '@fortawesome/free-solid-svg-icons';
 
 // Services
-import { QuizService } from '../quiz.service';
-import { CategoryService } from '../category.service';
+import { QuizService } from '../services/quiz.service';
+import { CategoryService } from '../services/category.service';
 
 // Model
 import { Category } from '../model/category';
@@ -17,13 +17,13 @@ import { Quiz } from '../model/quiz';
 })
 export class CategoryComponent implements OnInit {
 
+  // Icons
+  icons = [faSquare, faCheck]
   categories: Category[];
   quizzes: Quiz[];
   selectedCategory: Category;
+  progress: number;
 
-  // Icons
-  faSquare = faSquare
-  faCheckSquare = faCheckSquare
 
 
   constructor(
@@ -42,12 +42,12 @@ export class CategoryComponent implements OnInit {
 
   }
 
-
   // Get quizzes
   getQuizzes(id: string): void {
     this.quizService.getQuizzesByCategory(id)
       .subscribe(quizzes => {
         this.quizzes = quizzes
+        this.updateProgress()
       });
   }
 
@@ -57,6 +57,12 @@ export class CategoryComponent implements OnInit {
       .subscribe(cat => {
         this.selectedCategory = cat;
       });
+  }
+
+
+  // Calculate progress
+  updateProgress(): void{
+    this.progress = (this.quizzes.filter(q=>q.completed).length/this.quizzes.length)*100
   }
 
 }

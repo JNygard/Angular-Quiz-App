@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Quiz } from './model/quiz';
+import { Quiz } from '../model/quiz';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 
 
 @Injectable({

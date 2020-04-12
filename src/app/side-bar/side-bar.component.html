@@ -2,13 +2,25 @@
 
 <div *ngIf="categories" class="bg-light border-right" id="sidebar-wrapper">
 
-  <div class="sidebar-heading"> Quiz Categories</div>
+  <a [routerLink]="['/category', 1 ]">
+    <div class="sidebar-heading"> Quiz App</div>
+  </a>
+
+  <br />
+
+  <p id="category-title"> Categories: </p>
 
   <!-- Categories -->
-  <div *ngFor='let cat of categories' class="list-group list-group-flush">
-    <a [routerLinkActive]="'active'" [routerLink]="['/category', cat.id ]" href="#"
-      class="list-group-item list-group-item-action bg-light"> {{cat.title}}
+  <div *ngFor='let cat of categories; index as i;' class="list-group list-group-flush">
+
+
+    <a [routerLink]="['/category', cat.id ]" href="#" [ngClass]="selectedCategory.id === cat.id? 'selected':'' "
+      class="list-group-item list-group-item-action bg-light">
+      <fa-icon [icon]="icons[i]"></fa-icon>
+      {{cat.title}}
     </a>
+
   </div>
 
 </div>
+
