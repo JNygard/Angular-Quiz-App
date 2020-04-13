@@ -1,9 +1,9 @@
-
-
-<div class="d-flex" id="wrapper">
+<div *ngIf="quizzes && categories" [ngClass]="'toggle'" class="d-flex" id="wrapper">
 
   <!-- Sidebar -->
-  <app-side-bar></app-side-bar>
+
+
+  <app-side-bar *ngIf="toggle=='toggled'" [categories]="categories" [quizzes]="quizzes"></app-side-bar>
 
 
   <div id="page-content-wrapper">
@@ -14,12 +14,15 @@
 
     <!-- Content -->
     <div class="container-fluid">
-      <app-quiz></app-quiz>
+
+      <router-outlet></router-outlet>
+
     </div>
 
+    <!-- Footer
+<app-footer></app-footer>
+-->
   </div>
 
 </div>
 
-<!-- Footer-->
-<app-footer></app-footer>

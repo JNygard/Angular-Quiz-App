@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UiServiceService } from "../../services/ui-service.service";
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private uiService: UiServiceService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {}
+
+  toggle() {
+    this.uiService.toggleSidebar()
   }
 
 }

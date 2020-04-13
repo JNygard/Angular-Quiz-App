@@ -1,0 +1,96 @@
+
+
+#option{
+    margin-top: 10px;
+}
+#question-body{
+ width: 100%;
+ height: 200px;
+ justify-content: center;
+}
+#question{
+  text-align: center;
+}
+#question-text-container{
+    margin: auto;
+    width: 100%;
+    padding-top: 20px;
+}
+#question-box{
+    margin: 10px;
+    height: 200px;
+    width: 100%;
+    justify-content: center;
+    z-index: 0;
+}
+
+#container{
+    border-width: 20px;
+    border-color: black;
+    height: 90vh;
+}
+
+#question-section{
+    height: 45%;
+    z-index: 0;
+}
+
+#option-section{
+    height: 45%; 
+    justify-content: center;
+    z-index: 0;
+}
+
+
+#feedback-success{
+    color: green;
+    text-align: center;
+}
+#feedback-fail{
+    color: red;
+    text-align: center;
+}
+
+#feedback-win{
+    color: green;
+    font-style: bold;
+    text-align: center;
+}
+
+#next-section{
+    justify-content: center;
+}
+
+#next-row{
+    width: 100%;
+    justify-self: center;
+    justify-content: flex-end;
+    display: flex;
+    align-items: flex-end;
+}
+#next{
+    max-width: 350px;
+    align-self: flex-end;
+}
+
+    
+.btn-primary2{
+    background-color: rgb(5, 157, 240);
+    color: white;
+}
+
+.btn-disabled2{
+    background-color: rgb(138, 138, 138);
+    color: rgb(201, 201, 201);
+}
+
+
+#feedback-container{
+    bottom: -60px;
+    position: absolute; 
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto; 
+    width: 300px; 
+}

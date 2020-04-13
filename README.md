@@ -1,7 +1,14 @@
 # QuizApp
 
 
+Quiz app frontend made with angular. Retrieves questions and categories from API. 
+Updates players completed quizzes to API.
+
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.0.
+
+Other libraries used: rxjs, Bootstrap, FontAwesome
 
 ## Development server
 

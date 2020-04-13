@@ -1,0 +1,60 @@
+<div *ngIf="question" id="container" class="container">
+
+    <!-- Question card -->
+    <div class="row align-items-center" id="question-section">
+        <div class="card" id="question-box">
+            <div class="card-body" id="question-body">
+
+                <!-- Progress -->
+                <div>
+                    <app-progress-bar progress="{{progress}}">
+                    </app-progress-bar>
+                </div>
+
+                <!-- Question-->
+                <div id="question-text-container">
+                    <h5 class="card-title" id="question">{{question.question}}</h5>
+
+                    <!-- Feedback -->
+                    <div *ngIf="pause" class="alert" [ngClass]="success? 'alert-success' : 'alert-danger'" id="feedback-container">
+                        <h2 *ngIf="success&& progress!==100" id="feedback-success">Correct!</h2>
+                        <h2 *ngIf="!success" id="feedback-fail">Try again</h2>
+                        <h2 *ngIf="success && progress===100" id="feedback-win">You won!</h2>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Options -->
+    <div class="row align-items-center" id="option-section">
+        <div class="row" style="width: 100%;">
+            <div *ngFor='let o of options; index as i' class="col-lg-6">
+                <button (click)="answer(i)" id="option" type="button"
+                    class="btn btn-lg btn-block"
+                    [ngClass]="pause? 'btn-disabled2' : ''"
+                    [ngClass]="pause && i == correctPosition? 'btn-success' : 'btn-primary2'"
+                    [ngClass]="pause && (answerPosition!=correctPosition && i == answerPosition)? 'btn-danger' : 'btn-primary2'"
+
+                    >{{o.title}} </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Next button -->
+    <div *ngIf="pause" id="next-section">
+        <div id="next-row">
+            <button (click)="goNext()" id="next" type="button" class="btn btn-primary2 btn-block btn-lg">Next
+                <fa-icon [icon]="faArrowRight"></fa-icon></button> </div>
+    </div>
+</div>
+
+
+
+<app-spinner
+*ngIf="!question"
+></app-spinner>

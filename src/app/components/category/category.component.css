@@ -1,0 +1,31 @@
+
+
+.container{
+    height: 85vh;
+    width: 100%;
+    text-align: center;
+}
+
+#quiz-item{
+    margin-top: 20px;
+}
+
+#quiz-item:hover{
+    cursor: pointer;
+}
+
+.card-text{
+    color: "black"
+}
+
+.bg-success2{
+    background: #56ab2f;
+    color: white;
+}
+
+.bg-primary2{
+    background-color: rgb(5, 157, 240);
+    color: white;
+}
+
+
