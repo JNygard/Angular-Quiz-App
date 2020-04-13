@@ -80,7 +80,7 @@ export class InMemoryDataService implements InMemoryDbService {
       },
             // Quiz 4 questions
             {
-              id: 16, quizID: 4, catID:2, question: "Music question 1. Hello.", position: 1,
+              id: 16, quizID: 4, catID:2, question: "Quiz 4 question 1. Hello.", position: 1,
               o1r: "Option 1(correct)", o2w: "Option 1-2", o3w: "Option 1-3", o4w: "Option 1-4",
               extra: ""
             },{
@@ -102,7 +102,7 @@ export class InMemoryDataService implements InMemoryDbService {
             },
             // Quiz 5 questions
             {
-              id: 20, quizID: 5, catID:2, question: "Music question 2?", position: 1,
+              id: 20, quizID: 5, catID:2, question: "Quiz 5 question 2?", position: 1,
               o1r: "Option 1(correct)", o2w: "Option 1-2", o3w: "Option 1-3", o4w: "Option 1-4",
               extra: ""
             },{
@@ -124,7 +124,7 @@ export class InMemoryDataService implements InMemoryDbService {
             },
             // Quiz 6 questions
             {
-              id: 25, quizID: 6, catID:2, question: "Music question 3", position: 1,
+              id: 25, quizID: 6, catID:2, question: "Quiz 6 question 3", position: 1,
               o1r: "Option 1(correct)", o2w: "Option 1-2", o3w: "Option 1-3", o4w: "Option 1-4",
               extra: ""
             },{
