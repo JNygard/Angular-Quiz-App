@@ -1,8 +1,13 @@
-# QuizApp
+# Angular Quiz App
 
 
 Quiz app frontend made with angular. Retrieves questions and categories from API. 
 Updates players completed quizzes to API.
+
+
+Mobile            |  Desktop
+:-------------------------:|:-------------------------:
+  ![Mobile](https://github.com/JNygard/Angular-Quiz-App/blob/master/screenshot2.png)| ![Desktop](https://github.com/JNygard/Angular-Quiz-App/blob/master/screenshot1.png)
 
 
 
