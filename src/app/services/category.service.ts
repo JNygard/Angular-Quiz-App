@@ -24,14 +24,14 @@ export class CategoryService {
 
   getCategories(): Observable<Category[]> {
     if (this.cache.length > 0) {
-      console.log("**** Categories from cache ****")
+      // console.log("**** Categories from cache ****")
       return of(this.cache);
     } else if (this.observableCache) {
       // Request pending
       return this.observableCache;
     } else {
       // New request needed
-      console.log("**** Fetching categories ****")
+      // console.log("**** Fetching categories ****")
       this.observableCache = this.http.get<Category[]>(this.url).pipe(
         map((rawData) => this.mapCachedCategories(rawData)),
         catchError(this.handleError<Category[]>(`getQuizzes`)),

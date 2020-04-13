@@ -3,14 +3,14 @@ import { ActivatedRoute } from '@angular/router';
 import { faSquare, faCheck } from '@fortawesome/free-solid-svg-icons';
 
 // Services
-import { QuizService } from '../services/quiz.service';
-import { CategoryService } from '../services/category.service';
-import { PlayerService } from '../services/player.service';
+import { QuizService } from '../../services/quiz.service';
+import { CategoryService } from '../../services/category.service';
+import { PlayerService } from '../../services/player.service';
 
 // Model
-import { Category } from '../model/category';
-import { Quiz } from '../model/quiz';
-import { Player } from '../model/player';
+import { Category } from '../../model/category';
+import { Quiz } from '../../model/quiz';
+import { Player } from '../../model/player';
 
 @Component({
   selector: 'app-category',

@@ -16,7 +16,7 @@
                     <h5 class="card-title" id="question">{{question.question}}</h5>
 
                     <!-- Feedback -->
-                    <div *ngIf="pause">
+                    <div *ngIf="pause" class="alert" [ngClass]="success? 'alert-success' : 'alert-danger'" id="feedback-container">
                         <h2 *ngIf="success&& progress!==100" id="feedback-success">Correct!</h2>
                         <h2 *ngIf="!success" id="feedback-fail">Try again</h2>
                         <h2 *ngIf="success && progress===100" id="feedback-win">You won!</h2>

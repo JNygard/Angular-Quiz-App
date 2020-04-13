@@ -4,14 +4,14 @@ import {Location} from '@angular/common';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 // Services
-import { QuestionService } from '../services/question.service';
-import { QuizService } from '../services/quiz.service';
-import { PlayerService } from '../services/player.service';
+import { QuestionService } from '../../services/question.service';
+import { QuizService } from '../../services/quiz.service';
+import { PlayerService } from '../../services/player.service';
 
 // Model
-import { Quiz } from '../model/quiz';
-import { Question } from '../model/question';
-import { Player } from '../model/player';
+import { Quiz } from '../../model/quiz';
+import { Question } from '../../model/question';
+import { Player } from '../../model/player';
 
 
 

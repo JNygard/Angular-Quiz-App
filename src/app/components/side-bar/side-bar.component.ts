@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, NavigationEnd } from "@angular/router";
-import { faTree, faMusic, faTrash, faInfo} from '@fortawesome/free-solid-svg-icons';
-import { Category } from '../model/category';
-import { Quiz } from '../model/quiz';
-import { UiServiceService } from "../services/ui-service.service";
+import { faTree, faGlobeEurope, faTrash, faInfo} from '@fortawesome/free-solid-svg-icons';
+import { Category } from '../../model/category';
+import { Quiz } from '../../model/quiz';
+import { UiServiceService } from "../../services/ui-service.service";
 
 
 
@@ -17,7 +17,7 @@ export class SideBarComponent implements OnInit {
   @Input() quizzes: Quiz[];
 
   selectedCategory: Category;
-  icons = [faTree, faMusic]
+  icons = [faGlobeEurope,faTree]
   settingsIcon = [faTrash, faInfo]
   toggleInfo = false
 
