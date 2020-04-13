@@ -29,17 +29,20 @@ export class InMemoryDataService implements InMemoryDbService {
       id: 1,
       catID: 1,
       name: "Quiz 1",
-      points: 0,
-      completed: true
     },{
       id: 2,
       catID: 2,
       name: "Qiz 2",
-      points: 0,
-      completed: false
     }
 ]
 
+   // Players
+   const players = [
+    {
+      id: 1,
+      completed: []
+    }
+  ];
 
 
     // Categories
@@ -55,7 +58,7 @@ export class InMemoryDataService implements InMemoryDbService {
     ];
 
 
-    return {questions, categories, quizzes};
+    return {questions, categories, quizzes, players};
   }
 
 }

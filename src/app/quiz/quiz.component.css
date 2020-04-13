@@ -41,8 +41,18 @@
 }
 
 
-#feedback{
+#feedback-success{
     color: teal;
+    text-align: center;
+}
+#feedback-fail{
+    color: tomato;
+    text-align: center;
+}
+
+#feedback-win{
+    color: gold;
+    font-style: bold;
     text-align: center;
 }
 
@@ -62,3 +72,13 @@
     align-self: flex-end;
 }
 
+    
+.btn-primary2{
+    background-color: rgb(5, 157, 240);
+    color: white;
+}
+
+.btn-disabled2{
+    background-color: rgb(138, 138, 138);
+    color: rgb(201, 201, 201);
+}

@@ -5,10 +5,12 @@ import { faSquare, faCheck } from '@fortawesome/free-solid-svg-icons';
 // Services
 import { QuizService } from '../services/quiz.service';
 import { CategoryService } from '../services/category.service';
+import { PlayerService } from '../services/player.service';
 
 // Model
 import { Category } from '../model/category';
 import { Quiz } from '../model/quiz';
+import { Player } from '../model/player';
 
 @Component({
   selector: 'app-category',
@@ -23,6 +25,7 @@ export class CategoryComponent implements OnInit {
   quizzes: Quiz[];
   selectedCategory: Category;
   progress: number;
+  player: Player
 
 
 
@@ -30,6 +33,7 @@ export class CategoryComponent implements OnInit {
     private route: ActivatedRoute,
     private quizService: QuizService,
     private categoryService: CategoryService,
+    private playerService: PlayerService,
 
   ) { }
 
@@ -38,8 +42,18 @@ export class CategoryComponent implements OnInit {
     this.route.params.subscribe(routeParams => {
       this.getQuizzes(routeParams.id);
       this.getCategory(routeParams.id);
+      this.getPlayer("1");
     });
 
+  }
+
+  // Get player
+  getPlayer(id: string): void {
+    this.playerService.getPlayer(id)
+      .subscribe(player => {
+        this.player = player
+        this.updateProgress()
+      });
   }
 
   // Get quizzes
@@ -47,7 +61,7 @@ export class CategoryComponent implements OnInit {
     this.quizService.getQuizzesByCategory(id)
       .subscribe(quizzes => {
         this.quizzes = quizzes
-        this.updateProgress()
+        
       });
   }
 
@@ -62,7 +76,7 @@ export class CategoryComponent implements OnInit {
 
   // Calculate progress
   updateProgress(): void{
-    this.progress = (this.quizzes.filter(q=>q.completed).length/this.quizzes.length)*100
+    this.progress = (this.quizzes.filter(q=>this.player.completed.includes(q.id)).length/this.quizzes.length)*100  
   }
 
 }

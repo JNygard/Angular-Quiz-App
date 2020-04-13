@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, tap, map, share} from 'rxjs/operators';
 
 import { Category } from '../model/category';
 
@@ -16,32 +16,43 @@ export class CategoryService {
 
   private url = 'api/categories';  
 
+  private cache: Category[] = [];
+  private observableCache: Observable<Category[]>
+
   constructor(private http: HttpClient) { }
 
+
   getCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(this.url)
-      .pipe(
-        tap(_ => this.log('fetched Category')),
-        catchError(this.handleError<Category[]>('getCategory', []))
-      );
+    if (this.cache.length > 0) {
+      console.log("**** Categories from cache ****")
+      return of(this.cache);
+    } else if (this.observableCache) {
+      // Request pending
+      return this.observableCache;
+    } else {
+      // New request needed
+      console.log("**** Fetching categories ****")
+      this.observableCache = this.http.get<Category[]>(this.url).pipe(
+        map((rawData) => this.mapCachedCategories(rawData)),
+        catchError(this.handleError<Category[]>(`getQuizzes`)),
+        share())
+    }
+    return this.observableCache;
   }
 
   getCategory(id: string): Observable<Category> {
-    const url = `${this.url}/${id}`;
-    return this.http.get<Category>(url).pipe(
-      tap(_ => this.log(`fetched Category id=${id}`)),
-      catchError(this.handleError<Category>(`getCategory id=${id}`))
-    );
+    return this.getCategories().pipe(map(categories => categories.filter(cat => cat.id == parseInt(id))[0]));
   }
 
-
-  private log(message: string) {
-    console.log(message)
+  private mapCachedCategories(body: Category[]) {
+    this.observableCache = null;
+    this.cache = body
+    return this.cache;
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      this.log(`${operation} failed: ${error.message}`);
+      console.log(`${operation} failed: ${error.message}`);
       return of(result as T);
     };
   }

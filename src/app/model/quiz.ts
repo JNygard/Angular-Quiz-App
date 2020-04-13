@@ -6,8 +6,6 @@ export interface Quiz {
     catID: number;
     name: string;
     questions: Question[];
-    points: number;
-    completed: boolean;
 }
 
 

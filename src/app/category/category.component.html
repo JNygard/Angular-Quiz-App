@@ -1,6 +1,6 @@
-<div *ngIf="selectedCategory" class="container">
+<div *ngIf="selectedCategory && player" class="container">
 
-  <h2>{{selectedCategory.title}}</h2>
+  <h2 class="text-light">{{selectedCategory.title}}</h2>
 
   <!--Progress bar-->
   <app-progress-bar progress="{{progress}}"></app-progress-bar>
@@ -8,24 +8,23 @@
   <br />
 
   <div id="quizz-list">
-    <div class="row" style="width: 100%;">
+    <div class="row">
 
       <!-- Quiz items -->
       <div *ngFor='let q of quizzes' class="col-lg-6">
         <div [routerLink]="['/quiz', q.id ]" href="#" id="quiz-item"
           class="list-group-item list-group-item-action"
-          [ngClass]="q.completed? 'bg-success':'bg-warning' "
+          [ngClass]="player.completed.includes(q.id)? 'bg-success2':'bg-primary2' "
           >
 
           <h4 class="card-text">{{q.name}} </h4>
 
-          
-          <p *ngIf="q.completed" class="card-text">
-            <fa-icon [icon]="icons[1]" style="color: black;" class="far"> </fa-icon>
+          <p *ngIf="player.completed.includes(q.id)" class="card-text">
+            <fa-icon [icon]="icons[1]" style="color: white;" class="far"> </fa-icon>
             Completed!
           </p>
 
-          <p *ngIf="!q.completed" class="card-text">
+          <p *ngIf="!player.completed.includes(q.id)" class="card-text">
             Try out!
           </p>
 

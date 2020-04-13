@@ -8,13 +8,13 @@
 
   <br />
 
-  <p id="category-title"> Categories: </p>
+  <p class="section-title"> Categories </p>
 
   <!-- Categories -->
   <div *ngFor='let cat of categories; index as i;' class="list-group list-group-flush">
 
 
-    <a [routerLink]="['/category', cat.id ]" href="#" [ngClass]="selectedCategory.id === cat.id? 'selected':'' "
+    <a [routerLink]="['/category', cat.id ]" (click)="closeSidebar()" href="#" [ngClass]="selectedCategory.id === cat.id? 'selected':'' "
       class="list-group-item list-group-item-action bg-light">
       <fa-icon [icon]="icons[i]"></fa-icon>
       {{cat.title}}
@@ -22,5 +22,36 @@
 
   </div>
 
+  <p class="section-title"> Preferences </p>
+
+    <!-- Settings -->
+    <div class="list-group list-group-flush">
+
+
+      <a  (click)="resetScore()" class="list-group-item list-group-item-action bg-light sidebar-button"> 
+        <fa-icon [icon]="settingsIcon[0]"></fa-icon>
+        Reset (Refresh page)
+      </a>
+
+      <a (click)="showInfo()" class="list-group-item list-group-item-action bg-light sidebar-button"> 
+        <fa-icon [icon]="settingsIcon[1]"></fa-icon>
+        Info
+      </a>
+
+      <div class="alert alert-info" role="alert" [ngClass]="toggleInfo?'': 'hidden'">
+        Simple frontend quiz app made with Angular v.9.1. Other libraries used: rxjs, Bootstrap, Fontawesome.
+      </div>
+  
+    </div>
+
+  <div>
+
+  </div>
+
+
+
 </div>
+
+
+
 

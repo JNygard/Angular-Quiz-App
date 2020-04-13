@@ -17,3 +17,15 @@
 .card-text{
     color: "black"
 }
+
+.bg-success2{
+    background: #56ab2f;
+    color: white;
+}
+
+.bg-primary2{
+    background-color: rgb(5, 157, 240);
+    color: white;
+}
+
+

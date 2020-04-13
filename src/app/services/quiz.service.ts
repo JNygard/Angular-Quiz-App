@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Quiz } from '../model/quiz';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, tap, map, share, filter, } from 'rxjs/operators';
 
 
 @Injectable({
@@ -13,48 +13,55 @@ export class QuizService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  private url = 'api/quizzes';  
+  private url = 'api/quizzes';
+
+  private quizzCache: Quiz[] = [];
+  private observableCache: Observable<Quiz[]>
+
 
   constructor(
     private http: HttpClient) { }
 
 
-getQuizzes (): Observable<Quiz[]> {
-  return this.http.get<Quiz[]>(this.url)
-    .pipe(
-      tap(_ => this.log('fetched Quiz')),
-      catchError(this.handleError<Quiz[]>('getQuiz', []))
-    );
-}
+  getQuizzes(): Observable<Quiz[]> {
+    if (this.quizzCache.length > 0) {
+      console.log("**** Quizzes from cache ****")
+      return of(this.quizzCache);
+    } else if (this.observableCache) {
+      // Request pending
+      return this.observableCache;
+    } else {
+      // New request needed
+      console.log("**** Fetching quizzess ****")
+      this.observableCache = this.http.get<Quiz[]>(this.url).pipe(
+        map((rawData) => this.mapCachedQuizzes(rawData)),
+        catchError(this.handleError<Quiz[]>(`getQuizzes`)),
+        share())
+    }
+    return this.observableCache;
+  }
 
-getQuizzesByCategory (catID: string): Observable<Quiz[]> {
-
-  let params = new HttpParams().set('catID', ''+catID);
-  return this.http.get<Quiz[]>(this.url, {params})
-    .pipe(
-      tap(_ => this.log('fetched Quiz')),
-      catchError(this.handleError<Quiz[]>('getQuiz', []))
-    );
-}
+  getQuizzesByCategory(catID: string): Observable<Quiz[]> {
+    return this.getQuizzes().pipe(map(quizzes => quizzes.filter(quiz => quiz.catID === parseInt(catID))));
+  }
 
 
-getQuiz(id: number): Observable<Quiz> {
-  const url = `${this.url}/${id}`;
-  return this.http.get<Quiz>(url).pipe(
-    tap(_ => this.log(`fetched Quiz id=${id}`)),
-    catchError(this.handleError<Quiz>(`getQuiz id=${id}`))
-  );
-}
+  getQuiz(id: number): Observable<Quiz> {
+    return this.getQuizzes().pipe(map(quizzes => quizzes.filter(quiz => quiz.id == id)[0]));
+  }
 
-private log(message: string) {
-  console.log(message)
-}
 
-private handleError<T> (operation = 'operation', result?: T) {
-  return (error: any): Observable<T> => {
-    this.log(`${operation} failed: ${error.message}`);
-    return of(result as T);
-  };
-}
+  private mapCachedQuizzes(body: Quiz[]) {
+    this.observableCache = null;
+    this.quizzCache = body
+    return this.quizzCache;
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.log(`${operation} failed: ${error.message}`);
+      return of(result as T);
+    };
+  }
 
 }

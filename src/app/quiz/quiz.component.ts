@@ -6,10 +6,12 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 // Services
 import { QuestionService } from '../services/question.service';
 import { QuizService } from '../services/quiz.service';
+import { PlayerService } from '../services/player.service';
 
 // Model
 import { Quiz } from '../model/quiz';
 import { Question } from '../model/question';
+import { Player } from '../model/player';
 
 
 
@@ -21,7 +23,8 @@ import { Question } from '../model/question';
 export class QuizComponent implements OnInit {
 
   faArrowRight = faArrowRight
-  
+
+  player: Player
   options: any[]
   question: Question;
   questions: Question[];
@@ -30,23 +33,44 @@ export class QuizComponent implements OnInit {
   points = 0
   fails = 0
   correctPosition = 0
+  answerPosition = 0
   pause = false
-  success = false
+  success = true
+  progress = 0
+
 
 
   constructor(
     private route: ActivatedRoute,
     private questionService: QuestionService,
     private quizService: QuizService,
+    private playerService: PlayerService,
     private _location: Location
     ) { }
     
 
   ngOnInit() {
+    this.getPlayer("1")
     this.route.params.subscribe(routeParams => {
       this.getQuiz(routeParams.id);
     });
   }
+
+
+  // Get player
+  getPlayer(id: string): void {
+    this.playerService.getPlayer(id)
+      .subscribe(player => {
+        this.player = player
+      });
+  }
+
+  // Update player score
+  updateScore(): void {
+    this.playerService.updatePlayer(this.player)
+      .subscribe();
+  }
+
 
   // get Questions
   getQuestions(quizID: number): void {
@@ -76,18 +100,37 @@ export class QuizComponent implements OnInit {
 
   // Quiz logic ----------------------------------------------------------------------
 
+  updateProgress(){
+    this.progress = ((this.question.position)/(this.questions.length))*100
+  }
+
   answer(index: number){
-    // TODO 
-    this.pause = true
+    if(!this.pause){
+      this.updateProgress()
+      this.answerPosition = index
+      if(index!=this.correctPosition){
+        this.success=false
+      }
+      this.pause = true
+    }
   }
 
   goNext(){
-    if(this.question.position < this.questions.length){
+    if(this.question.position < this.questions.length && this.success){
       this.question = this.questions.find(q => q.position == this.question.position + 1)
       this.setOptions()
 
       this.pause = false
     }else{
+      if(this.success){
+        if(!this.player.completed.includes(this.quiz.id)){
+          console.log("Updating score")
+          this.player.completed.push(this.quiz.id)
+          this.updateScore()
+        }
+        
+        // Update quizz to completed
+      }
       this._location.back();
     }
     

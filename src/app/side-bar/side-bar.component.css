@@ -2,8 +2,10 @@
     overflow-x: hidden;
 }
 
-#category-title{
+.section-title{
   margin-left: 20px;
+  margin-top: 30px;
+  font-weight: bold;
 }
   #sidebar-wrapper {
     min-height: 100vh;
@@ -52,3 +54,11 @@
     color: tomato;
   }
   
+  .sidebar-button:hover{
+    cursor: pointer;
+  }
+
+
+  .hidden{
+    display: none;
+  }
